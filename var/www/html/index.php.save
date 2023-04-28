@@ -1,0 +1,20 @@
+
+<html><body>
+<form method="POST">
+<input type="text" id="username" name="username" placeholder="username">
+<input type="text" id="urlSite" name="urlSite" placeholder="url site">
+<input type="submit" name="creation_compte" value="creation compte">
+</form>
+<?php
+if (isset($_POST['creation_compte'])) {
+    $username = $_POST['username'];
+    $url = $_POST['urlSite'];
+var_dump($username, $url);
+echo shell_exec("./demo.sh $username $url"); //exécute le fichier shell
+}
+
+$AccountSize = shell_exec("du -sh /home/user15 | awk '{print $1}'");
+echo "<pre>Espace consommé : $AccountSize</pre>";
+?>
+</body>
+</html>
