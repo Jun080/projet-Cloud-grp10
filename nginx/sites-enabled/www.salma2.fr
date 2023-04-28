@@ -1,0 +1,18 @@
+# Default server configuration
+#
+server {
+	listen 80;
+	listen [::]:80;
+	root /home/salma2/site/;
+	index index.php index.html;
+	server_name www.salma2.fr;
+	location / {
+		try_files $uri $uri/ =404;
+	}
+	access_log /home/salma2/access.log;
+	error_log /home/salma2/error.log;
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+	}
+}

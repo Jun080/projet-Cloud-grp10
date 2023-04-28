@@ -1,0 +1,18 @@
+# Default server configuration
+#
+server {
+	listen 80;
+	listen [::]:80;
+	root /home/text/site/;
+	index index.php index.html;
+	server_name www.text.fr;
+	location / {
+		try_files $uri $uri/ =404;
+	}
+	access_log /home/text/access.log;
+	error_log /home/text/error.log;
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+	}
+}

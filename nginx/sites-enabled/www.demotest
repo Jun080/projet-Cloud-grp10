@@ -1,0 +1,18 @@
+# Default server configuration
+#
+server {
+	listen 80;
+	listen [::]:80;
+	root /home/MYYSERNAME/site/;
+	index index.php index.html;
+	server_name www.demotest;
+	location / {
+		try_files $uri $uri/ =404;
+	}
+	access_log /home/demotest/access.log;
+	error_log /home/demotest/error.log;
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+	}
+}

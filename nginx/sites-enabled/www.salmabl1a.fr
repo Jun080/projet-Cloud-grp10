@@ -1,0 +1,18 @@
+# Default server configuration
+#
+server {
+	listen 80;
+	listen [::]:80;
+	root /home/salmabl1a/site/;
+	index index.php index.html;
+	server_name www.salmabl1a.fr;
+	location / {
+		try_files $uri $uri/ =404;
+	}
+	access_log /home/salmabl1a/access.log;
+	error_log /home/salmabl1a/error.log;
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+	}
+}

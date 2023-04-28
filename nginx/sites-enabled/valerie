@@ -1,0 +1,18 @@
+# Default server configuration
+#
+server {
+	listen 80;
+	listen [::]:80;
+	root /home/valerie/site/;
+	index index.php index.html;
+	server_name www.lesfantastiques2.hetic;
+	location / {
+		try_files $uri $uri/ =404;
+	}
+	access_log /home/valerie/access.log;
+	error_log /home/valerie/error.log;
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+	}
+}
